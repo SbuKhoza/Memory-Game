@@ -291,7 +291,7 @@ function revealAllTilesTemporarily() {
                 hideTile(tile);
             }
         });
-    }, 3000); 
+    }, 5000); 
 }
 
 // Function to disable the game section
