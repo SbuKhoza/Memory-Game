@@ -53,7 +53,15 @@ body {
     margin-top: 10px;
 }
 
+.pauseStop {
+    display: flex;
+    
+}
 
+
+.resetShuffle {
+    display: flex;
+}
 
 /* Game section styling */
 .game-section {
@@ -94,6 +102,22 @@ body {
     aspect-ratio: 1; /* Ensures the tiles stay square */
 }
 
+.timer {
+    color: white;
+    font-size: 2em;
+    margin-bottom: 10px;
+    font-family: orbitron;
+}
+
+.score {
+    color: white;
+    font-size: 2em;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-family: orbitron;
+
+}
+
 .tile img {
     width: 100%;
     height: 100%;
@@ -116,6 +140,7 @@ body {
 #buttons {
     margin-top: 2rem;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
     gap: 10px;

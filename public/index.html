@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AniFashion Game</title>
-    <!-- MUI CSS Library -->
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
     <link href="https://cdn.muicss.com/mui-0.9.43/css/mui.min.css" rel="stylesheet" type="text/css" />
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMmVJLFU5g3NchJr57gp6n0NQri1zpGk7F0uTlM" crossorigin="anonymous">
-    <!-- Custom CSS -->
+    
     <link rel="stylesheet" type="text/css" href="style.css">
     <style>
         /* Loader CSS */
@@ -78,7 +80,7 @@
             <h2>AniFashion</h2>
 
             <div class="timer">
-                <span id="timer">0</span> seconds
+                seconds: <span id="timer">0</span>
             </div>
 
             <div class="score">
@@ -86,12 +88,13 @@
             </div>
 
             <div class="button">
-                <!-- Start Game Button -->
+                
                 <button class="start" onclick="startGame()">Start Game</button>
             </div>
 
             <div id="buttons">
                 <!-- Reset Button -->
+                 <div class="resetShuffle">
                 <button class="reset" onclick="resetGame()" title="Reset Game">
                     <img src="assets/reset.svg" alt="reset">
                 </button>
@@ -100,16 +103,19 @@
                 <button class="shuffle" onclick="shuffleGrid()" title="Shuffle Grid">
                     <img src="assets/shuffle.svg" alt="shuffle">
                 </button>
+                </div>
 
+                <div class="pauseStop">
                 <!-- Pause/Resume Button -->
                 <button class="pauseresume" onclick="togglePauseResume()" title="Pause/Resume Game">
-                    <img src="assets/pause.svg" alt="pause/resume">
+                    <img src="assets/pause.svg" alt="Pause">
                 </button>
 
                 <!-- End Game Button -->
                 <button class="stop" onclick="endGame()" title="End Game">
                     <img src="assets/stop.svg" alt="stop">
                 </button>
+                </div>
             </div>
         </div>
 

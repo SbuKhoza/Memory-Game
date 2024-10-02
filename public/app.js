@@ -96,9 +96,9 @@ function resetGame() {
     // Clear any existing timer
     clearInterval(timerInterval);
 
-    // Reset pause/resume button icon
+    // Reset pause/resume button icon to pause.svg
     const pauseButton = document.querySelector('.pauseresume img');
-    pauseButton.src = 'assets/pause.png'; // Ensure you have a pause.png in assets
+    pauseButton.src = 'assets/pause.svg'; // Use pause.svg
 
     // Disable game section and enable Start button
     disableGameSection();
@@ -225,10 +225,10 @@ function togglePauseResume() {
     isPaused = !isPaused;
     const pauseButton = document.querySelector('.pauseresume img');
     if (isPaused) {
-        pauseButton.src = 'assets/resume.png'; // Update to resume icon
+        pauseButton.src = 'assets/play.svg'; // Update to play.svg for resume
         disableGameSection(); // Disable game section while paused
     } else {
-        pauseButton.src = 'assets/pause.png'; // Update to pause icon
+        pauseButton.src = 'assets/pause.svg'; // Update to pause.svg for pausing
         enableGameSection(); // Enable game section after resuming
     }
 }
@@ -241,7 +241,7 @@ function endGame() {
     // Clear the timer
     clearInterval(timerInterval);
 
-    // Display the game over message
+    // Display the game over message with template literals
     document.getElementById('gameOverMessage').textContent = `Congratulations! You completed the game in ${timeElapsed} seconds with a score of ${score}.`;
 
     // Show the Game Over popup
