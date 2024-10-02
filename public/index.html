@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrazyMoji Game</title>
+    <!-- MUI CSS Library -->
+    <link href="https://cdn.muicss.com/mui-0.9.43/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMmVJLFU5g3NchJr57gp6n0NQri1zpGk7F0uTlM" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        /* Loader CSS */
+        .loader {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: 8px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 8px solid #3498db;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            z-index: 9999;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Hide loader after content loads */
+        .hidden {
+            display: none;
+        }
+
+        /* Modal for instructions */
+        #instructionModal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+            display: none; /* Ensure modal is initially hidden */
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* MUI popup for game over */
+        .mui-overlay {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .mui--show-overlay {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loader -->
+    <div id="loader" class="loader"></div>
+
+    <div class="main-container hidden">
+        <!-- Sidebar Section -->
+        <div class="mui-panel sidebar">
+            <h2>CrazyMoji</h2>
+
+            <div class="timer">
+                <span id="timer">0</span> seconds
+            </div>
+
+            <div class="score">
+                Score: <span id="score">0</span>
+            </div>
+
+            <div class="button">
+                <!-- Start Game Button -->
+                <button class="start" onclick="startGame()">Start Game</button>
+            </div>
+
+            <div id="buttons">
+                <!-- Reset Button -->
+                <button class="reset" onclick="resetGame()" title="Reset Game">
+                    <img src="assets/reset.png" alt="reset">
+                </button>
+
+                <!-- Shuffle Grid Button -->
+                <button class="shuffle" onclick="shuffleGrid()" title="Shuffle Grid">
+                    <img src="assets/shuffle.png" alt="shuffle">
+                </button>
+
+                <!-- Pause/Resume Button -->
+                <button class="pauseresume" onclick="togglePauseResume()" title="Pause/Resume Game">
+                    <img src="assets/pause.png" alt="pause/resume">
+                </button>
+
+                <!-- End Game Button -->
+                <button class="stop" onclick="endGame()" title="End Game">
+                    <img src="assets/stop.png" alt="stop">
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Game Section -->
+        <div class="game-section">
+            <!-- Game Grid -->
+            <div class="grid-container mui--text-center">
+                
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                <div class="tile"><img src="assets/Yellow.png" alt="card back"></div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- MUI Modal for instructions -->
+    <div id="instructionModal" class="mui-panel mui--z3">
+        <div class="mui-container mui--text-center">
+            <h2>Welcome to CrazyMoji!</h2>
+            <p>Match all the cards to win the game. Click "Start Game" to begin!</p>
+            <button class="mui-btn mui-btn--raised mui-btn--primary" onclick="closeInstructionModal()">Start Game</button>
+        </div>
+    </div>
+
+    <!-- MUI Popup for Game Over -->
+    <div id="gameOverPopup" class="mui-panel mui--z3 mui-overlay">
+        <div class="mui-container mui--text-center">
+            <h2>Game Over!</h2>
+            <p id="gameOverMessage"></p>
+            <button class="mui-btn mui-btn--raised mui-btn--primary" onclick="closeGameOverPopup()">Close</button>
+        </div>
+    </div>
+
+    <!-- JavaScript File -->
+    <script src="app.js"></script>
+
+    <script>
+        // Initialize the game when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+                document.querySelector('.main-container').classList.remove('hidden');
+                showInstructionModal();
+            }, 2000);
+        });
+
+        // Function to show the instruction modal
+        function showInstructionModal() {
+            document.getElementById('instructionModal').style.display = 'block';
+        }
+
+        // Function to close the instruction modal and start the game
+        function closeInstructionModal() {
+            document.getElementById('instructionModal').style.display = 'none';
+            startGame();
+        }
+
+        // Function to end the game and show the MUI popup
+        function endGame() {
+            if (!gameStarted) return; // Prevent popup without a game
+
+            clearInterval(timerInterval);
+            document.getElementById('gameOverMessage').textContent = `Congratulations! You completed the game in ${timeElapsed} seconds with a score of ${score}.`;
+            document.getElementById('gameOverPopup').classList.add('mui--show-overlay');
+            enableStartButton();
+            disableGameSection();
+            gameStarted = false;
+        }
+
+        // Function to close the game over popup
+        function closeGameOverPopup() {
+            document.getElementById('gameOverPopup').classList.remove('mui--show-overlay');
+        }
+    </script>
+</body>
+</html>
